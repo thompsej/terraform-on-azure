@@ -22,7 +22,7 @@ resource "azurerm_subnet_network_security_group_association" "web_subnet_nsg_ass
 ##Locals Block for NSG Rules
 locals {
   web-inbound-ports-map = {
-    "100" : "80", #If the key starts with a number, you must use a colon (:) to separate the key and value.
+    "100" : "80", # If the key starts with a number, you must use the colon syntax ":" instead of "="
     "110" : "443",
     "120" : "22"
   }

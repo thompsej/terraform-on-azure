@@ -30,3 +30,4 @@ override.tf.json
 
 # Mac Files
 .DS_Store
+.vscode/settings.json
