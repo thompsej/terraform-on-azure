@@ -1,7 +1,7 @@
 # Random String Resource
 resource "random_string" "myrandom" {
-  length = 6
+  length  = 6
   special = false
-  upper = false
-  number = false
+  upper   = false
+  number  = false
 }
