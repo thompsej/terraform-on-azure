@@ -8,7 +8,7 @@ resource "azurerm_subnet" "app_subnet" {
 
 # Create NSG
 resource "azurerm_network_security_group" "app_subnet_nsg" {
-  name                = "${azurerm_subnet.appsubnet.name}-nsg"
+  name                = "${azurerm_subnet.app_subnet.name}-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
@@ -16,7 +16,7 @@ resource "azurerm_network_security_group" "app_subnet_nsg" {
 # Associate NSG and Subnet
 resource "azurerm_subnet_network_security_group_association" "app_subnet_nsg_associate" {
   depends_on                = [azurerm_network_security_rule.app_nsg_rule_inbound]
-  subnet_id                 = azurerm_subnet.appsubnet.id
+  subnet_id                 = azurerm_subnet.app_subnet.id
   network_security_group_id = azurerm_network_security_group.app_subnet_nsg.id
 }
 

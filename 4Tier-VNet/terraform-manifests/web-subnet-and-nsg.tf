@@ -8,20 +8,20 @@ resource "azurerm_subnet" "web_subnet" {
 
 # Create Network Security Group
 resource "azurerm_network_security_group" "web_subnet_nsg" {
-  name                = "${azurerm_subnet.web-subnet.name}-nsg"
+  name                = "${azurerm_subnet.web_subnet.name}-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
 # Associate NSG & Subnet
 resource "azurerm_subnet_network_security_group_association" "web_subnet_nsg_association" {
   depends_on                = [azurerm_network_security_rule.web_nsg_rule_inbound]
-  subnet_id                 = azurerm_subnet.web-subnet.id
+  subnet_id                 = azurerm_subnet.web_subnet.id
   network_security_group_id = azurerm_network_security_group.web_subnet_nsg.id
 }
 # Create NSG Rules
 ##Locals Block for NSG Rules
 locals {
-  web-inbound-ports-map = {
+  web_inbound_ports_map = {
     "100" : "80", # If the key starts with a number, you must use the colon syntax ":" instead of "="
     "110" : "443",
     "120" : "22"
@@ -29,7 +29,7 @@ locals {
 }
 ## NSG Inbound Rule for WebTier Subnets
 resource "azurerm_network_security_rule" "web_nsg_rule_inbound" {
-  for_each                    = web_inbound_ports_map
+  for_each                    = local.web_inbound_ports_map
   name                        = "Rule-Port-${each.value}"
   priority                    = each.key
   direction                   = "Inbound"

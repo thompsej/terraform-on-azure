@@ -16,13 +16,13 @@ output "virtual_network_id" {
 ## Subnet Name 
 output "web_subnet_name" {
   description = "WebTier Subnet Name"
-  value       = azurerm_subnet.websubnet.name
+  value       = azurerm_subnet.web_subnet.name
 }
 
 ## Subnet ID 
 output "web_subnet_id" {
   description = "WebTier Subnet ID"
-  value       = azurerm_subnet.websubnet.id
+  value       = azurerm_subnet.web_subnet.id
 }
 
 # Network Security Outputs

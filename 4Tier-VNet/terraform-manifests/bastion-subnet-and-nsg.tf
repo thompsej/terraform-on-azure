@@ -8,7 +8,7 @@ resource "azurerm_subnet" "bastion_subnet" {
 
 # Create NSG
 resource "azurerm_network_security_group" "bastion_subnet_nsg" {
-  name                = "${azurerm_subnet.bastionsubnet.name}-nsg"
+  name                = "${azurerm_subnet.bastion_subnet.name}-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
@@ -16,7 +16,7 @@ resource "azurerm_network_security_group" "bastion_subnet_nsg" {
 # Associate NSG and Subnet
 resource "azurerm_subnet_network_security_group_association" "bastion_subnet_nsg_associate" {
   depends_on                = [azurerm_network_security_rule.bastion_nsg_rule_inbound]
-  subnet_id                 = azurerm_subnet.bastionsubnet.id
+  subnet_id                 = azurerm_subnet.bastion_subnet.id
   network_security_group_id = azurerm_network_security_group.bastion_subnet_nsg.id
 }
 

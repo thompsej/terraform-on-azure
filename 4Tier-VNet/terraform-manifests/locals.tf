@@ -3,7 +3,7 @@ locals {
   environment          = var.environment
   resource_name_prefix = "${var.business_division}-${var.environment}"
   common_tags = {
-    owners      = local.owners,
+    owners      = local.owners
     environment = local.environment
   }
 }
